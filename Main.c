@@ -20,11 +20,11 @@ int Solve(struct Sudoku* board, uint32_t pos) {
 	uint8_t alreadySetValues[9] = { 0 };
 	SudokuListNeighbouringCells(board, alreadySetValues, x, y);
 
-	for(uint32_t i = 0; i < 9; i++) {
+	for(uint8_t i = 0; i < 9; i++) {
 		if(alreadySetValues[i])
 			continue;
 
-		uint32_t move = i + 1;
+		uint8_t move = i + 1;
 		SudokuSet(board, move, x, y);
 		uint32_t nextPos = FindEmptyPosition(board, pos + 1);
 		if(nextPos == 0xFFFFFFFF)
