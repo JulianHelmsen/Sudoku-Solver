@@ -17,7 +17,7 @@ int Solve(struct Sudoku* board, uint32_t pos) {
 	uint32_t y = pos / 9;
 	uint32_t x = pos % 9;
 
-	char alreadySetValues[9] = { 0 };
+	uint8_t alreadySetValues[9] = { 0 };
 	SudokuListNeighbouringCells(board, alreadySetValues, x, y);
 
 	for(uint32_t i = 0; i < 9; i++) {

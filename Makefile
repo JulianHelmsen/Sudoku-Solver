@@ -1,5 +1,5 @@
 
-FLAGS = -g 
+FLAGS = -g  -Wall
 CC = gcc
 
 all: Main.c sudoku.c sudoku.h sudoku_reader.c sudoku_reader.h

@@ -3,11 +3,11 @@
 #include "sudoku.h"
 #include <assert.h>
 
-uint32_t SudokuGet(struct Sudoku* board, uint32_t x, uint32_t y) {
+uint8_t SudokuGet(struct Sudoku* board, uint32_t x, uint32_t y) {
 	return board->cells[x + y * 9];
 }
 
-void SudokuSet(struct Sudoku* board, uint32_t val, uint32_t x, uint32_t y) {
+void SudokuSet(struct Sudoku* board, uint8_t val, uint32_t x, uint32_t y) {
 	assert(val > 0  && val <= 9);
 	board->cells[x + y * 9] = val;
 }
@@ -37,7 +37,7 @@ void SudokuPrint(const struct Sudoku* board) {
 			*it = ' ';
 			it++;
 
-			uint32_t val = board->cells[x + y * 9];
+			uint8_t val = board->cells[x + y * 9];
 			*it = val == 0 ? '.' : '0' + val;
 			it++;
 			*it = ' ';
@@ -62,8 +62,8 @@ int SudokuCheck(const struct Sudoku* board) {
 		char vmap[10] = { 0 }; // vertical map
 		char hmap[10] = { 0 }; // horizontal map
 		for(uint32_t j = 0; j < 9; j++) {
-			uint32_t vVal = board->cells[i + j * 9];
-			uint32_t hVal = board->cells[j + i * 9];
+			uint8_t vVal = board->cells[i + j * 9];
+			uint8_t hVal = board->cells[j + i * 9];
 			if(vmap[vVal])
 				return 0;
 			if(hmap[hVal])
@@ -87,7 +87,7 @@ int SudokuCheck(const struct Sudoku* board) {
 				for(uint32_t i = 0; i < 3; i++) {
 					uint32_t ypos = y + j;
 					uint32_t xpos = x + i;
-					uint32_t val = board->cells[xpos + ypos * 9];
+					uint8_t val = board->cells[xpos + ypos * 9];
 					if(!val)
 						return 0;
 					map[val - 1] = 1;
@@ -103,7 +103,7 @@ int SudokuCheck(const struct Sudoku* board) {
 
 }
 
-void SudokuListNeighbouringCells(const struct Sudoku* board, char* alreadySetValues, uint32_t x, uint32_t y) {
+void SudokuListNeighbouringCells(const struct Sudoku* board, uint8_t* alreadySetValues, uint32_t x, uint32_t y) {
 	for(uint32_t i = 0; i < 9; i++) {
 		uint32_t hVal = board->cells[i + y * 9];
 		uint32_t vVal = board->cells[x + i * 9];
@@ -129,7 +129,7 @@ void SudokuListNeighbouringCells(const struct Sudoku* board, char* alreadySetVal
 			uint32_t ypos = blockStartY + i;
 			if(xpos == x && ypos == y)
 				continue;
-			uint32_t val = board->cells[xpos + ypos * 9];
+			uint8_t val = board->cells[xpos + ypos * 9];
 			if(val)
 				alreadySetValues[val - 1] = 1;
 
