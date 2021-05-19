@@ -53,12 +53,12 @@ int main(const int argc, const char** argv) {
 	puts("\n----------------------------\n");
 
 	int solution = Solve(&sudoku, FindEmptyPosition(&sudoku, 0));
-	printf("solution? -> %d\n", solution);
+	printf("possible solution found? -> %s\n", solution ? "true" : "false");
 
 
 	SudokuPrint(&sudoku);
 
-	printf("%d\n", SudokuCheck(&sudoku));
+	printf("valid: %s\n", SudokuCheck(&sudoku) ? "true" : "false");
 
 	return 0;
 }
