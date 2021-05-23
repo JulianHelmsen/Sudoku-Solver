@@ -118,10 +118,8 @@ void SudokuListNeighbouringCells(const struct Sudoku* board, uint8_t* alreadySet
 	}
 
 
-	uint32_t blockX = x / 3;
-	uint32_t blockY = y / 3;
-	const uint32_t blockStartX = blockX * 3;
-	const uint32_t blockStartY = blockY * 3;
+	const uint32_t blockStartX = x - x % 3;
+	const uint32_t blockStartY = y - y % 3;
 
 	for(uint32_t i = 0; i < 3; i++)
 		for(uint32_t j = 0; j < 3; j++) {
